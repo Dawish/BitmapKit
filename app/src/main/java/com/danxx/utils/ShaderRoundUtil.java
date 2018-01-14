@@ -1,6 +1,7 @@
 package com.danxx.utils;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -38,7 +39,7 @@ public class ShaderRoundUtil {
   public static Bitmap drawRoundBlurShader(Canvas canvas, Bitmap bitmap, int mRadius,Rect currentRect,int shadowHeight){
     Bitmap rbsBitmap = null;
     if(bitmap == null){
-      return rbsBitmap;
+      return null;
     }
 
     Paint paint = new Paint();
@@ -66,8 +67,64 @@ public class ShaderRoundUtil {
     canvas.drawRoundRect(shadowRect ,mRadius ,mRadius ,paint);
 
     return rbsBitmap;
+
   }
 
+
+  /**
+   * 返回一个抠图模糊渐变圆角图片
+   * @param srcBitmap 阴影处理图片
+   * @param mRadius 圆角半径
+   * @param currentRect 当前view的绘制矩形
+   * @param shadowHeight 下面要绘制阴影的高度
+   * @return
+   */
+  @DebugLog
+  public static Bitmap processRoundBlurShader(Canvas canvas,Bitmap srcBitmap, int mRadius,Rect currentRect,int shadowHeight){
+    Bitmap rbsBitmap = null;
+    if(srcBitmap == null){
+      Log.d("danxx", "return rbsBitmap == null");
+      return srcBitmap;
+    }
+    Log.d("danxx", "processRoundBlurShader...");
+
+
+    Paint paint = new Paint();
+    //取消透明
+    //paint.setAlpha(30);
+    /**把图片裁剪成阴影高度*/
+    rbsBitmap = clipBitmapBottom(srcBitmap,shadowHeight,0.6f);
+
+    rbsBitmap = BlurKit.getInstance().blur(rbsBitmap, 18);
+
+    RectF shadowRect = new RectF(currentRect);
+    shadowRect.bottom = shadowHeight;
+    //取消偏移
+    //shadowRect.offset(0,(currentRect.height() - (shadowHeight/2)));
+
+    /**临时画布*/
+    Canvas tempCanvas = new Canvas();
+    Bitmap tempBitmap = Bitmap.createBitmap((int)shadowRect.width(), (int)shadowRect.height(), Bitmap.Config.ARGB_8888);
+    tempCanvas.setBitmap(tempBitmap);
+
+    /**渐变Bitmap*/
+    BitmapShader bitmapShader = new BitmapShader(rbsBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
+    /**线性渐变*/
+    LinearGradient linearGradient = new LinearGradient(0,shadowRect.top,0,shadowRect.bottom, Color.BLACK, Color.TRANSPARENT,Shader.TileMode.CLAMP);
+    /**混合*/
+    ComposeShader composeShader = new ComposeShader(bitmapShader,linearGradient,new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
+
+    paint.setShader(composeShader);
+
+    /**绘制圆角矩形*/
+    tempCanvas.drawRoundRect(shadowRect ,mRadius ,mRadius ,paint);
+
+    /**回收之前的Bitmap*/
+    if (srcBitmap != null && !srcBitmap.equals(tempBitmap) && !srcBitmap.isRecycled()) {
+      srcBitmap.recycle();
+    }
+    return tempBitmap;
+  }
 
   /**
    * 裁剪一定高度保留下面
@@ -89,7 +146,7 @@ public class ShaderRoundUtil {
     Log.d("danxx", "clipBitmapBottom after h : "+clipBitmap.getHeight());
 
     /**回收之前的Bitmap*/
-    if (srcBitmap != null && !srcBitmap.equals(srcBitmap) && !srcBitmap.isRecycled()) {
+    if (srcBitmap != null && !srcBitmap.equals(clipBitmap) && !srcBitmap.isRecycled()) {
       srcBitmap.recycle();
     }
 
@@ -121,7 +178,7 @@ public class ShaderRoundUtil {
     Log.d("danxx", "clipBitmapBottom after h : "+clipBitmap.getHeight());
 
     /**回收之前的Bitmap*/
-    if (srcBitmap != null && !srcBitmap.equals(srcBitmap) && !srcBitmap.isRecycled()) {
+    if (srcBitmap != null && !srcBitmap.equals(clipBitmap) && !srcBitmap.isRecycled()) {
       srcBitmap.recycle();
     }
 
@@ -166,6 +223,12 @@ public class ShaderRoundUtil {
      */
     paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
     canvas.drawBitmap(bitmap ,0 ,0 ,paint);
+
+    /**回收之前的Bitmap*/
+    if (bitmap != null && !bitmap.equals(target) && !bitmap.isRecycled()) {
+      bitmap.recycle();
+    }
+
     /****/
     return target;
   }

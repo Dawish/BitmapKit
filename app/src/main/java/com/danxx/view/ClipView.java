@@ -42,9 +42,6 @@ public class ClipView extends View {
 
         paint.setAntiAlias(true);
         bitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.bitmap_clip);
-
-        bitmap = BitmapClipUtils.clipBitmapRect(bitmap);
-
     }
 
     @Override

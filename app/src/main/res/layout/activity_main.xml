@@ -7,7 +7,7 @@
     tools:context="com.danxx.MainActivity"
     android:gravity="center">
 
-    <com.danxx.view.ClipView
+    <com.danxx.view.RoundBlurShaderView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     
