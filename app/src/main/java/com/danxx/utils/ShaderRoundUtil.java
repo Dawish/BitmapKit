@@ -36,10 +36,10 @@ public class ShaderRoundUtil {
    * @return
    */
   @DebugLog
-  public static Bitmap drawRoundBlurShader(Canvas canvas, Bitmap bitmap, int mRadius,Rect currentRect,int shadowHeight){
+  public static void drawRoundBlurShader(Canvas canvas, Bitmap bitmap, int mRadius,Rect currentRect,int shadowHeight){
     Bitmap rbsBitmap = null;
     if(bitmap == null){
-      return null;
+      return;
     }
 
     Paint paint = new Paint();
@@ -65,8 +65,6 @@ public class ShaderRoundUtil {
 
     /**绘制圆角矩形*/
     canvas.drawRoundRect(shadowRect ,mRadius ,mRadius ,paint);
-
-    return rbsBitmap;
 
   }
 

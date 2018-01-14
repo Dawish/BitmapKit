@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
@@ -15,6 +16,8 @@ import android.view.View;
 import com.danxx.R;
 import com.danxx.utils.BitmapClipUtils;
 import com.danxx.utils.ShaderRoundUtil;
+
+import hugo.weaving.DebugLog;
 
 /**
  * Created by danxx on 2018/1/14.
@@ -57,6 +60,7 @@ public class RoundBlurShaderView extends View {
 
     int shadowHeight = 180;
 
+    @DebugLog
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);

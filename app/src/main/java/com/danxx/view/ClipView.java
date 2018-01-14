@@ -14,6 +14,8 @@ import com.danxx.R;
 import com.danxx.utils.BitmapClipUtils;
 import com.danxx.utils.ShaderRoundUtil;
 
+import hugo.weaving.DebugLog;
+
 /**
  * @author danxx
  */
@@ -37,27 +39,25 @@ public class ClipView extends View {
     Paint paint = new Paint();
     Bitmap bitmap;
     Rect rect = new Rect();
+    Bitmap temp;
 
     private void init(){
 
         paint.setAntiAlias(true);
         bitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.bitmap_clip);
+        temp = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.bitmap_clip);
     }
 
+    @DebugLog
     @Override
     protected void onDraw(Canvas canvas) {
 
+
         rect.set(0,0,bitmap.getWidth(),bitmap.getHeight());
-        ShaderRoundUtil.drawRoundBlurShader(canvas,bitmap,10,rect,100);
+        ShaderRoundUtil.drawRoundBlurShader(canvas,bitmap,10,rect,180);
 
-        super.onDraw(canvas);
+        canvas.drawBitmap(temp,0,0,paint);
 
-        if(bitmap!=null){
-
-            canvas.drawBitmap(bitmap,0,0,paint);
-
-
-        }
 
     }
 }
