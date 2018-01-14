@@ -13,7 +13,7 @@ import android.view.View;
 import hugo.weaving.DebugLog;
 
 /**
- * Created by Administrator on 2018/1/11.
+ * Created by danxx on 2018/1/11.
  */
 
 public class BlurKit {
