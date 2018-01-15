@@ -8,7 +8,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/DxImageLoader" />
+            <option value="$PROJECT_DIR$/Lib_BitmapKit" />
+            <option value="$PROJECT_DIR$/Lib_ImageLoader" />
             <option value="$PROJECT_DIR$/app" />
           </set>
         </option>

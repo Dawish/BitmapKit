@@ -1,7 +1,6 @@
-package com.danxx.utils;
+package danxx.bitmapkit;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -16,6 +15,7 @@ import android.graphics.RectF;
 import android.graphics.Shader;
 import android.util.Log;
 
+import danxx.bitmapkit.blur.BlurKit;
 import hugo.weaving.DebugLog;
 
 /**

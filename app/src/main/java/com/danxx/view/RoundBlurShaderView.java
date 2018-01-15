@@ -15,8 +15,8 @@ import android.view.View;
 
 import com.danxx.R;
 import com.danxx.utils.BitmapClipUtils;
-import com.danxx.utils.ShaderRoundUtil;
 
+import danxx.bitmapkit.ShaderRoundUtil;
 import hugo.weaving.DebugLog;
 
 /**

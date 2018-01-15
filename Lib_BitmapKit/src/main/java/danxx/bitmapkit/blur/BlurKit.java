@@ -1,4 +1,4 @@
-package com.danxx.utils;
+package danxx.bitmapkit.blur;
 
 import android.content.Context;
 import android.graphics.Bitmap;

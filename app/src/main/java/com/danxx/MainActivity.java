@@ -11,7 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 
-import com.danxx.utils.BlurKit;
+import danxx.bitmapkit.blur.BlurKit;
 
 /**
  *  @author danxx
@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         BlurKit.init(MainActivity.this);
 
         setContentView(R.layout.activity_main);

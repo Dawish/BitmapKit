@@ -1,4 +1,4 @@
-package com.danxx.compress;
+package danxx.bitmapkit.compress;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

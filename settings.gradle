@@ -1,1 +1,1 @@
-include ':app', ':DxImageLoader'
+include ':app', ':Lib_ImageLoader', ':Lib_BitmapKit'
