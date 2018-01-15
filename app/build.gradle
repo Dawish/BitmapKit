@@ -15,6 +15,11 @@ android {
         renderscriptSupportModeEnabled true
 
     }
+
+    dataBinding {
+        enabled = true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -30,9 +35,10 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-
     compile 'io.reactivex.rxjava2:rxjava:2.1.8'
-
+    compile 'com.facebook.fresco:fresco:1.7.1'
+    implementation 'com.android.support:recyclerview-v7:26.1.0'
     implementation project(':Lib_BitmapKit')
     implementation project(':Lib_ImageLoader')
+    compile 'com.bulong.rudeness:rudeness:latest.release@aar'
 }

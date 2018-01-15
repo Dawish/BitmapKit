@@ -5,6 +5,7 @@ import android.graphics.ColorFilter;
 import android.graphics.PorterDuff;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearSnapHelper;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.MotionEvent;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         BlurKit.init(MainActivity.this);
 
         setContentView(R.layout.activity_main);
+
 
 //        btn = findViewById(R.id.btn);
 //

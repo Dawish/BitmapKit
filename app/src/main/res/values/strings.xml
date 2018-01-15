@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">BitmapOperations</string>
+
+    <string name="tangwei01">https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1516032740812&amp;di=e0b5e8f3cf289852ad2db8a8a38a04f4&amp;imgtype=0&amp;src=http%3A%2F%2Fp3.gexing.com%2FG1%2FM00%2F08%2FA4%2FrBACFFPHogLQ1M1iAACazVdtfPU058.jpg</string>
+    <string name="tangwei02">https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1516034230481&amp;di=5def17ff516806a3a586c79d818826a1&amp;imgtype=0&amp;src=http%3A%2F%2Fimg.hkwb.net%2Fatt%2Fsite2%2F20110217%2F210913a79ed0bcd56a07990b7f25bebe.jpg</string>
+    <string name="tangwei03">https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1516034242598&amp;di=a6ee67e1539b4f31cdf648f20a1142b3&amp;imgtype=0&amp;src=http%3A%2F%2Fwww.hinews.cn%2Fpic%2F0%2F15%2F12%2F60%2F15126049_979603.jpg</string>
+    <string name="tangwei04">https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1516034258240&amp;di=25d925c9de6179fc87c9fcc49d33f5a8&amp;imgtype=0&amp;src=http%3A%2F%2Fg4.hexunimg.cn%2F2014-05-13%2F164734156.jpg</string>
+    <string name="tangwei05">https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1516034286336&amp;di=c789521d279ee80204854b4c4940a25e&amp;imgtype=0&amp;src=http%3A%2F%2Fimg.ivsky.com%2Fimg%2Fbizhi%2Fpre%2F201303%2F28%2Fwei_tang-007.jpg</string>
+    <string name="tangwei06">https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1516034342606&amp;di=d1eeb90d4fbc6af0bf44c19a84cf9bba&amp;imgtype=0&amp;src=http%3A%2F%2Fimg5.duitang.com%2Fuploads%2Fitem%2F201409%2F30%2F20140930213936_JCjZE.jpeg</string>
+
 </resources>
