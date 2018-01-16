@@ -16,42 +16,14 @@
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
-            android:layout_width="710pt"
-            android:layout_height="360pt"
+            android:layout_width="990pt"
+            android:layout_height="560pt"
             android:clipChildren="false"
             android:clipToPadding="false"
             android:orientation="horizontal"
             android:padding="16pt"
             app:layoutManager="LinearLayoutManager" />
 
-        <com.danxx.view.ShadowDraweeView
-            android:id="@+id/draweeView"
-            android:layout_width="630pt"
-            android:layout_height="360pt"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="6pt"
-            android:layout_marginRight="6pt"
-            android:layout_marginTop="20pt"
-            fresco:actualImageScaleType="centerCrop"
-            fresco:failureImage="@drawable/loading"
-            fresco:failureImageScaleType="centerCrop"
-            fresco:placeholderImage="@drawable/loading"
-            fresco:placeholderImageScaleType="centerCrop"
-            fresco:roundedCornerRadius="10pt" />
-
-        <com.danxx.view.FocusShadowDraweeView
-            android:id="@+id/focusShadowDraweeView"
-            android:layout_width="485pt"
-            android:layout_height="268pt"
-            android:layout_gravity="center_horizontal"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            fresco:actualImageScaleType="centerCrop"
-            fresco:failureImage="@drawable/loading"
-            fresco:failureImageScaleType="centerCrop"
-            fresco:placeholderImage="@drawable/loading"
-            fresco:placeholderImageScaleType="centerCrop"
-            fresco:roundedCornerRadius="10pt" />
 
     </LinearLayout>
 </layout>

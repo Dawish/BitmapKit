@@ -87,24 +87,6 @@ public class ActivitySnapRecycler extends AppCompatActivity {
                 }
             }
         });
-
-        snapRecyclerBinding.draweeView.setImageURI(urlList.get(3));
-        snapRecyclerBinding.draweeView.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                snapRecyclerBinding.draweeView.setSelected(true);
-                snapRecyclerBinding.draweeView.invalidate();
-            }
-        },2000);
-
-        snapRecyclerBinding.focusShadowDraweeView.setImageURI(urlList.get(4));
-        snapRecyclerBinding.focusShadowDraweeView.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                snapRecyclerBinding.focusShadowDraweeView.requestFocus();
-            }
-        },2000);
-
     }
 
     static class TangweiAdapter extends RecyclerView.Adapter<TangweiViewHolder>{

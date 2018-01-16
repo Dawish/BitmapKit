@@ -21,7 +21,7 @@ public class DanxxApp extends Application {
         BitmapKitConfig.initialize(this, 5*1024*1024);
 
         //设计图标注的宽度
-        int designWidth = 720;
+        int designWidth = 1080;
         new RudenessScreenHelper(this, designWidth).activate();
 
     }

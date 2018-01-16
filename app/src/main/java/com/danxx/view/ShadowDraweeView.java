@@ -14,6 +14,7 @@ import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 
+import com.bulong.rudeness.RudenessScreenHelper;
 import com.facebook.drawee.generic.GenericDraweeHierarchy;
 import com.facebook.drawee.generic.RootDrawable;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -33,6 +34,7 @@ public class ShadowDraweeView extends SimpleDraweeView {
     private Rect currentRect;
     private Paint paint;
     private int mRadius;
+    private int shadowHeight = 120;
 
     public ShadowDraweeView(Context context, GenericDraweeHierarchy hierarchy) {
         super(context, hierarchy);
@@ -67,7 +69,8 @@ public class ShadowDraweeView extends SimpleDraweeView {
         paint.setColor(Color.WHITE);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(4);
-        mRadius = 10;
+        mRadius = (int)RudenessScreenHelper.pt2px(getContext(), 15);
+        shadowHeight = (int)RudenessScreenHelper.pt2px(getContext(), 100);
     }
 
     @DebugLog
@@ -91,7 +94,7 @@ public class ShadowDraweeView extends SimpleDraweeView {
                 }
                 if (blurBitmap != null && !blurBitmap.isRecycled()) {
                     Log.i("danxx", "to drawRoundBlurShader");
-                    blurBitmap = ShaderRoundUtils.processRoundBlurShader(blurBitmap, mRadius, currentRect, 80,true);
+                    blurBitmap = ShaderRoundUtils.processRoundBlurShader(blurBitmap, mRadius, currentRect, shadowHeight,true);
                     ShaderRoundUtils.drawRoundBlurShader(canvas, blurBitmap, currentRect);
                 } else {
                     Log.i("danxx", "getDrawingCache == null");
@@ -122,9 +125,9 @@ public class ShadowDraweeView extends SimpleDraweeView {
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        if (blurBitmap != null && !blurBitmap.isRecycled()) {
-            blurBitmap.recycle();
-        }
+        //if (blurBitmap != null && !blurBitmap.isRecycled()) {
+        //    blurBitmap.recycle();
+        //}
     }
 
     @Override

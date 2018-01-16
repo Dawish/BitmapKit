@@ -44,7 +44,7 @@ public class ShaderRoundUtils {
 
     Paint paint = new Paint();
     //取消透明
-    paint.setAlpha(20);
+    //paint.setAlpha(20);
     /**把图片裁剪成阴影高度*/
 
     Log.i("danxx", "crop");
