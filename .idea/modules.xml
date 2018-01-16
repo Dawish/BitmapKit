@@ -3,9 +3,13 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/BitmapKit.iml" filepath="$PROJECT_DIR$/BitmapKit.iml" />
+      <module fileurl="file://D:\code_copy\BitmapKit\BitmapKit.iml" filepath="D:\code_copy\BitmapKit\BitmapKit.iml" />
       <module fileurl="file://$PROJECT_DIR$/Lib_BitmapKit/Lib_BitmapKit.iml" filepath="$PROJECT_DIR$/Lib_BitmapKit/Lib_BitmapKit.iml" />
+      <module fileurl="file://D:\code_copy\BitmapKit\Lib_BitmapKit\Lib_BitmapKit.iml" filepath="D:\code_copy\BitmapKit\Lib_BitmapKit\Lib_BitmapKit.iml" />
       <module fileurl="file://$PROJECT_DIR$/Lib_ImageLoader/Lib_ImageLoader.iml" filepath="$PROJECT_DIR$/Lib_ImageLoader/Lib_ImageLoader.iml" />
+      <module fileurl="file://D:\code_copy\BitmapKit\Lib_ImageLoader\Lib_ImageLoader.iml" filepath="D:\code_copy\BitmapKit\Lib_ImageLoader\Lib_ImageLoader.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://D:\code_copy\BitmapKit\app\app.iml" filepath="D:\code_copy\BitmapKit\app\app.iml" />
     </modules>
   </component>
 </project>

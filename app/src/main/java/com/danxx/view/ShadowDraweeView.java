@@ -91,7 +91,7 @@ public class ShadowDraweeView extends SimpleDraweeView {
                 }
                 if (blurBitmap != null && !blurBitmap.isRecycled()) {
                     Log.i("danxx", "to drawRoundBlurShader");
-                    blurBitmap = ShaderRoundUtils.processRoundBlurShader(blurBitmap, mRadius, currentRect, 80);
+                    blurBitmap = ShaderRoundUtils.processRoundBlurShader(blurBitmap, mRadius, currentRect, 80,true);
                     ShaderRoundUtils.drawRoundBlurShader(canvas, blurBitmap, currentRect);
                 } else {
                     Log.i("danxx", "getDrawingCache == null");

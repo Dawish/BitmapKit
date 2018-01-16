@@ -13,10 +13,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.util.Log;
-
 import com.facebook.drawee.generic.RootDrawable;
 import com.facebook.drawee.view.SimpleDraweeView;
-
 import danxx.bitmapkit.ShaderRoundUtils;
 import hugo.weaving.DebugLog;
 
@@ -79,7 +77,7 @@ public class FocusShadowDraweeView extends SimpleDraweeView {
         }
         if(blurBitmap != null){
           Log.i("danxx", "to drawRoundBlurShader");
-          blurBitmap = ShaderRoundUtils.processRoundBlurShader(blurBitmap,mRadius,currentRect,80);
+          blurBitmap = ShaderRoundUtils.processRoundBlurShader(blurBitmap,mRadius,currentRect,80, true);
           ShaderRoundUtils.drawRoundBlurShader(canvas, blurBitmap, currentRect);
         }else {
           Log.i("danxx", "getDrawingCache == null");
@@ -116,6 +114,14 @@ public class FocusShadowDraweeView extends SimpleDraweeView {
     drawable.setBounds(0, 0, getWidth(), getHeight());
     drawable.draw(canvas);
     return bitmap;
+  }
+
+  @Override
+  protected void onDetachedFromWindow() {
+    super.onDetachedFromWindow();
+    if (blurBitmap != null && !blurBitmap.isRecycled()) {
+      blurBitmap.recycle();
+    }
   }
 
   @Override

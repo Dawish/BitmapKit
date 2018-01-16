@@ -13,7 +13,6 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.util.Log;
-
 import danxx.bitmapkit.blur.BlurKit;
 import hugo.weaving.DebugLog;
 
@@ -32,10 +31,11 @@ public class ShaderRoundUtils {
    * @param mRadius 圆角半径
    * @param currentRect 当前view的绘制矩形
    * @param shadowHeight 下面要绘制阴影的高度
+   * @param clipRecycle srcBitmap原图裁剪后是否需要回收调
    */
   @DebugLog
   public static Bitmap processRoundBlurShader(Bitmap srcBitmap, int mRadius, Rect currentRect,
-      int shadowHeight) {
+      int shadowHeight, boolean clipRecycle) {
     if (srcBitmap == null) {
       Log.d("danxx", "return rbsBitmap == null");
       return srcBitmap;
@@ -49,9 +49,7 @@ public class ShaderRoundUtils {
 
     Log.i("danxx", "crop");
 
-    //Bitmap clipBitmap  = clip4Bitmap(srcBitmap, currentRect.width(), currentRect.height(), shadowHeight);
-    Bitmap clipBitmap = clipBitmapBottom(srcBitmap, shadowHeight);
-    //Bitmap clipBitmap = cutLeftBottom(srcBitmap);
+    Bitmap clipBitmap = clipBitmapBottom(srcBitmap, shadowHeight, clipRecycle);
 
     Bitmap blurBitmap = BlurKit.getInstance().blur(clipBitmap, 18);
 
@@ -105,11 +103,12 @@ public class ShaderRoundUtils {
    *
    * @param srcBitmap 原图
    * @param needHeight 裁剪后需要的高度
+   * @param clipRecycle 原图裁剪后是否需要回收
    */
   @DebugLog
-  private static Bitmap clipBitmapBottom(Bitmap srcBitmap, int needHeight) {
+  private static Bitmap clipBitmapBottom(Bitmap srcBitmap, int needHeight,boolean clipRecycle) {
 
-    Bitmap cutBitmap = Bitmap.createBitmap(srcBitmap.getWidth(), needHeight, Bitmap.Config.ARGB_8888);
+    Bitmap cutBitmap = Bitmap.createBitmap(srcBitmap.getWidth(), needHeight, Bitmap.Config.ARGB_4444);
 
     Canvas canvas = new Canvas(cutBitmap);
 
@@ -121,7 +120,7 @@ public class ShaderRoundUtils {
     canvas.drawBitmap(srcBitmap, srcRect, desRect, null);
 
     /**回收*/
-    if (srcBitmap != null && !srcBitmap.equals(cutBitmap) && !srcBitmap.isRecycled()) {
+    if (clipRecycle && srcBitmap != null && !srcBitmap.equals(cutBitmap) && !srcBitmap.isRecycled()) {
       srcBitmap.recycle();
     }
 
@@ -154,30 +153,6 @@ public class ShaderRoundUtils {
     return rbsBitmap;
   }
 
-  /**
-   * 裁剪图片
-   */
-  @DebugLog
-  private static Bitmap clip4Bitmap(Bitmap image, int width, int height, int shadowHeight) {
-
-    Log.d("danxx", "clip4Bitmap before h : " + image.getHeight());
-
-    //根据原图创建一个设想大小的bitmap
-    Bitmap inputBitmap = Bitmap.createScaledBitmap(image, width, height, false);
-    //将设想图的像素读出来并且赋值给需要偏移出来的阴影的bitmap
-    int[] pix = new int[width * height];
-    inputBitmap.getPixels(pix, 0, width, 0, 0, width, height);
-    int[] shadowPix = new int[width * shadowHeight];
-    for (int i = 0; i < shadowPix.length; i++) {
-      shadowPix[i] = pix[width * (height - shadowHeight) + i];
-    }
-    Bitmap shadowBitmap = Bitmap.createBitmap(width, shadowHeight, Bitmap.Config.ARGB_4444);
-    shadowBitmap.setPixels(shadowPix, 0, width, 0, 0, width, shadowHeight);
-
-    Log.d("danxx", "clip4Bitmap after h : " + shadowBitmap.getHeight());
-
-    return shadowBitmap;
-  }
 
   /**
    * Bitmap绘制成圆角返回
