@@ -7,23 +7,39 @@
 
     </data>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        android:orientation="vertical">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="990pt"
-            android:layout_height="560pt"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:clipChildren="false"
             android:clipToPadding="false"
-            android:orientation="horizontal"
-            android:padding="16pt"
-            app:layoutManager="LinearLayoutManager" />
+            android:orientation="vertical">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="1080pt"
+                android:layout_height="560pt"
+                android:layout_marginTop="30pt"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:orientation="horizontal"
+                android:padding="16pt"
+                app:layoutManager="LinearLayoutManager" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="40pt"
+                android:gravity="center_horizontal"
+                android:padding="20pt"
+                android:text="@string/tangwei_desc"
+                android:textSize="26sp" />
+        </LinearLayout>
+    </ScrollView>
 
 
-    </LinearLayout>
 </layout>

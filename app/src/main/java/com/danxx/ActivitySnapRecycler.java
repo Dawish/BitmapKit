@@ -69,24 +69,33 @@ public class ActivitySnapRecycler extends AppCompatActivity {
                             if(selectedView.equals(view)){
                                 if(!selectedView.isEnabled()){
                                     selectedView.setSelected(true);
-                                    selectedView.postInvalidate();
                                 }
                             }else {
                                 selectedView.setSelected(false);
-                                selectedView.postInvalidate();
                                 view.setSelected(true);
-                                view.postInvalidate();
                                 selectedView = view;
                             }
                         }else {
                             selectedView = view;
                             selectedView.setSelected(true);
-                            selectedView.postInvalidate();
                         }
                     }
                 }
             }
         });
+
+        snapRecyclerBinding.recyclerView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if(snapRecyclerBinding.recyclerView.getChildCount()>0){
+                    View firstView = snapRecyclerBinding.recyclerView.getChildAt(0);
+                    if(firstView!=null){
+                        selectedView = firstView;
+                        firstView.setSelected(true);
+                    }
+                }
+            }
+        },1000);
     }
 
     static class TangweiAdapter extends RecyclerView.Adapter<TangweiViewHolder>{
