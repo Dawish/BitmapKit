@@ -15,6 +15,8 @@ import android.graphics.RectF;
 import android.graphics.Shader;
 import android.util.Log;
 
+import com.glidebitmappool.GlideBitmapPool;
+
 import danxx.bitmapkit.blur.BlurKit;
 import hugo.weaving.DebugLog;
 
@@ -102,7 +104,8 @@ public class ShaderRoundUtil {
 
     /**临时画布*/
     Canvas tempCanvas = new Canvas();
-    Bitmap tempBitmap = Bitmap.createBitmap((int)shadowRect.width(), (int)shadowRect.height(), Bitmap.Config.ARGB_8888);
+    Bitmap tempBitmap/* = Bitmap.createBitmap((int)shadowRect.width(), (int)shadowRect.height(), Bitmap.Config.ARGB_8888)*/;
+    tempBitmap = GlideBitmapPool.getDirtyBitmap((int)shadowRect.width(), (int)shadowRect.height(), Bitmap.Config.ARGB_4444);
     tempCanvas.setBitmap(tempBitmap);
 
     /**渐变Bitmap*/
@@ -119,7 +122,8 @@ public class ShaderRoundUtil {
 
     /**回收之前的Bitmap*/
     if (srcBitmap != null && !srcBitmap.equals(tempBitmap) && !srcBitmap.isRecycled()) {
-      srcBitmap.recycle();
+//      srcBitmap.recycle();
+      GlideBitmapPool.putBitmap(srcBitmap);
     }
     return tempBitmap;
   }
@@ -145,7 +149,8 @@ public class ShaderRoundUtil {
 
     /**回收之前的Bitmap*/
     if (srcBitmap != null && !srcBitmap.equals(clipBitmap) && !srcBitmap.isRecycled()) {
-      srcBitmap.recycle();
+//      srcBitmap.recycle();
+      GlideBitmapPool.putBitmap(srcBitmap);
     }
 
     return clipBitmap;
@@ -177,7 +182,8 @@ public class ShaderRoundUtil {
 
     /**回收之前的Bitmap*/
     if (srcBitmap != null && !srcBitmap.equals(clipBitmap) && !srcBitmap.isRecycled()) {
-      srcBitmap.recycle();
+//      srcBitmap.recycle();
+      GlideBitmapPool.putBitmap(srcBitmap);
     }
 
     return clipBitmap;
@@ -224,7 +230,8 @@ public class ShaderRoundUtil {
 
     /**回收之前的Bitmap*/
     if (bitmap != null && !bitmap.equals(target) && !bitmap.isRecycled()) {
-      bitmap.recycle();
+//      bitmap.recycle();
+      GlideBitmapPool.putBitmap(bitmap);
     }
 
     /****/
