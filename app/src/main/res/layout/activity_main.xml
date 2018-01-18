@@ -8,18 +8,19 @@
     tools:context="com.danxx.MainActivity">
 
 
-    <com.danxx.view.ClipView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <!--<com.danxx.view.ClipView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content" />-->
 
-    <com.danxx.view.RoundBlurShaderView
-        android:layout_width="match_parent"
-        android:layout_height="200pt" />
+    <!--<com.danxx.view.RoundBlurShaderView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="200pt" />-->
 
-    <!--<Button-->
-    <!--android:id="@+id/btn"-->
-    <!--android:layout_width="100dp"-->
-    <!--android:layout_height="100dp"-->
-    <!--android:background="@drawable/ic_launcher"/>-->
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/ic_launcher"
+        android:text="toBlur" />
 
 </LinearLayout>

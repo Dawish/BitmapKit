@@ -13,6 +13,9 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.util.Log;
+
+import com.glidebitmappool.GlideBitmapPool;
+
 import danxx.bitmapkit.blur.BlurKit;
 import hugo.weaving.DebugLog;
 
@@ -68,8 +71,10 @@ public class ShaderRoundUtils {
 
     /**临时画布*/
 
+//    Bitmap tempBitmap =
+//        Bitmap.createBitmap(blurBitmap.getWidth(), blurBitmap.getHeight(), Bitmap.Config.ARGB_8888);
     Bitmap tempBitmap =
-        Bitmap.createBitmap(blurBitmap.getWidth(), blurBitmap.getHeight(), Bitmap.Config.ARGB_8888);
+            GlideBitmapPool.getBitmap(blurBitmap.getWidth(), blurBitmap.getHeight(), Bitmap.Config.ARGB_8888);
     Canvas tempCanvas = new Canvas(tempBitmap);
 
     /**渐变Bitmap*/
@@ -90,10 +95,9 @@ public class ShaderRoundUtils {
 
     /**回收之前的Bitmap*/
     if (clipBitmap != null && !clipBitmap.equals(tempBitmap) && !clipBitmap.isRecycled()) {
-      clipBitmap.recycle();
-    }
-    if (blurBitmap != null && !blurBitmap.equals(tempBitmap) && !blurBitmap.isRecycled()) {
-      blurBitmap.recycle();
+      Log.d("danxx","GlideBitmapPool 111 recycle : "+clipBitmap);
+//      clipBitmap.recycle();
+      GlideBitmapPool.putBitmap(clipBitmap);
     }
     return tempBitmap;
   }
@@ -108,7 +112,8 @@ public class ShaderRoundUtils {
   @DebugLog
   private static Bitmap clipBitmapBottom(Bitmap srcBitmap, int needHeight,boolean clipRecycle) {
 
-    Bitmap cutBitmap = Bitmap.createBitmap(srcBitmap.getWidth(), needHeight, Bitmap.Config.ARGB_4444);
+//    Bitmap cutBitmap = Bitmap.createBitmap(srcBitmap.getWidth(), needHeight, Bitmap.Config.ARGB_8888);
+    Bitmap cutBitmap = GlideBitmapPool.getBitmap(srcBitmap.getWidth(), needHeight, Bitmap.Config.ARGB_8888);
 
     Canvas canvas = new Canvas(cutBitmap);
 
@@ -121,7 +126,9 @@ public class ShaderRoundUtils {
 
     /**回收*/
     if (clipRecycle && srcBitmap != null && !srcBitmap.equals(cutBitmap) && !srcBitmap.isRecycled()) {
-      srcBitmap.recycle();
+      Log.d("danxx","GlideBitmapPool 333 recycle : "+srcBitmap);
+//      srcBitmap.recycle();
+      GlideBitmapPool.putBitmap(srcBitmap);
     }
 
     return cutBitmap;
@@ -169,7 +176,9 @@ public class ShaderRoundUtils {
     /**开启抗锯齿**/
     paint.setAntiAlias(true);
     /****/
-    Bitmap target = Bitmap.createBitmap(mWidth, mHeight, Bitmap.Config.ARGB_8888);
+//    Bitmap target = Bitmap.createBitmap(mWidth, mHeight, Bitmap.Config.ARGB_8888);
+    Bitmap target = GlideBitmapPool.getBitmap(mWidth, mHeight, Bitmap.Config.ARGB_8888);
+
     /**
      * Construct a canvas with the specified bitmap to draw into. The       bitmapmust be mutable
      * 以bitmap对象创建一个画布，则将内容都绘制在bitmap上，bitmap不得为null;

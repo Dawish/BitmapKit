@@ -1,5 +1,6 @@
 package com.danxx;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.PorterDuff;
@@ -29,28 +30,29 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
+        btn = findViewById(R.id.btn);
 
-//        btn = findViewById(R.id.btn);
-//
-//        btn.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View view, MotionEvent event) {
-//                Button touchedButton = (Button)view;
-//                switch (event.getAction()) {
-//                    case MotionEvent.ACTION_DOWN:
-//                        touchedButton.getBackground().setColorFilter(0x22000000, PorterDuff.Mode.SRC_ATOP);
-//                        touchedButton.invalidate();
-//                        break;
-//                    case MotionEvent.ACTION_CANCEL:
-//                    case MotionEvent.ACTION_UP:
-//                        touchedButton.getBackground().clearColorFilter();
-//                        touchedButton.invalidate();
-//                        break;
-//                }
-//                return true;
-//
-//            }
-//        });
+        btn.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+                Button touchedButton = (Button)view;
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        touchedButton.getBackground().setColorFilter(0x22000000, PorterDuff.Mode.SRC_ATOP);
+                        touchedButton.invalidate();
+                        break;
+                    case MotionEvent.ACTION_CANCEL:
+                    case MotionEvent.ACTION_UP:
+                        touchedButton.getBackground().clearColorFilter();
+                        touchedButton.invalidate();
+                        Intent intent = new Intent(MainActivity.this, ActivitySnapRecycler.class);
+                        startActivity(intent);
+                        break;
+                }
+                return true;
+
+            }
+        });
 
     }
 }

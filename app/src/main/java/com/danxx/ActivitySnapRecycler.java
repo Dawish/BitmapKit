@@ -6,11 +6,13 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.danxx.databinding.ActivitySnapRecyclerBinding;
+import com.danxx.view.ShadowDraweeView;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;

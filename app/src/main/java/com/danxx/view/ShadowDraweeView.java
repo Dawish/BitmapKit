@@ -18,6 +18,7 @@ import com.bulong.rudeness.RudenessScreenHelper;
 import com.facebook.drawee.generic.GenericDraweeHierarchy;
 import com.facebook.drawee.generic.RootDrawable;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.glidebitmappool.GlideBitmapPool;
 
 import danxx.bitmapkit.ShaderRoundUtils;
 import hugo.weaving.DebugLog;
@@ -95,6 +96,7 @@ public class ShadowDraweeView extends SimpleDraweeView {
                 if (blurBitmap != null && !blurBitmap.isRecycled()) {
                     Log.i("danxx", "to drawRoundBlurShader");
                     blurBitmap = ShaderRoundUtils.processRoundBlurShader(blurBitmap, mRadius, currentRect, shadowHeight,true);
+                    Log.d("danxx","GlideBitmapPool to drawRoundBlurShader : "+blurBitmap);
                     ShaderRoundUtils.drawRoundBlurShader(canvas, blurBitmap, currentRect);
                 } else {
                     Log.i("danxx", "getDrawingCache == null");
@@ -113,22 +115,16 @@ public class ShadowDraweeView extends SimpleDraweeView {
     }
 
     private Bitmap drawable2bitmap(Drawable drawable) {
-        Bitmap bitmap = Bitmap.createBitmap(getWidth(), getHeight(),
-                drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888
-                        : Bitmap.Config.RGB_565);
+//        Bitmap bitmap = Bitmap.createBitmap(getWidth(), getHeight(),
+//                drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888
+//                        : Bitmap.Config.RGB_565);
+        Bitmap bitmap = GlideBitmapPool.getBitmap(getWidth(), getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
         drawable.setBounds(0, 0, getWidth(), getHeight());
         drawable.draw(canvas);
         return bitmap;
     }
 
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        //if (blurBitmap != null && !blurBitmap.isRecycled()) {
-        //    blurBitmap.recycle();
-        //}
-    }
 
     @Override
     public void setSelected(boolean selected) {
