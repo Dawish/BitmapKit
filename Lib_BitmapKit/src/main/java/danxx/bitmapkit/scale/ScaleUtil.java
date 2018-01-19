@@ -16,26 +16,24 @@ public class ScaleUtil {
     /**
      * 按新的宽高缩放图片
      *
-     * @param bm
+     * @param srcBitmap
      * @param newWidth
      * @param newHeight
      * @return
      */
-    public static Bitmap scaleBitmap(Bitmap bm, int newWidth, int newHeight) {
-        if (bm == null) {
+    public static Bitmap scaleBitmap(Bitmap srcBitmap, int newWidth, int newHeight, boolean cycleSrc) {
+        if (srcBitmap == null) {
             return null;
         }
-        int width = bm.getWidth();
-        int height = bm.getHeight();
+        int width = srcBitmap.getWidth();
+        int height = srcBitmap.getHeight();
         float scaleWidth = ((float) newWidth) / width;
         float scaleHeight = ((float) newHeight) / height;
         Matrix matrix = new Matrix();
         matrix.postScale(scaleWidth, scaleHeight);
-        Bitmap newbm = Bitmap.createBitmap(bm, 0, 0, width, height, matrix,
-                true);
-        if (bm != null & !bm.isRecycled()) {
-            bm.recycle();
-            bm = null;
+        Bitmap newbm = Bitmap.createBitmap(srcBitmap, 0, 0, width, height, matrix,true);
+        if (cycleSrc && srcBitmap != null & !srcBitmap.isRecycled()) {
+            GlideBitmapPool.putBitmap(srcBitmap);
         }
         return newbm;
     }

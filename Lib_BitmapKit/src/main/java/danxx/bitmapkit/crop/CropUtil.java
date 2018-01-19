@@ -3,6 +3,9 @@ package danxx.bitmapkit.crop;
 import android.graphics.Bitmap;
 import android.util.Log;
 
+import com.glidebitmappool.GlideBitmapPool;
+import com.glidebitmappool.internal.BitmapPool;
+
 import hugo.weaving.DebugLog;
 
 /**
@@ -16,10 +19,11 @@ public class CropUtil {
      * 裁剪一定高度保留下面
      * @param srcBitmap
      * @param needHeight
+     * @param cycleSrc 是否回收原Bitmap
      * @return
      */
     @DebugLog
-    private static Bitmap cropBitmapBottom(Bitmap srcBitmap, int needHeight) {
+    private static Bitmap cropBitmapBottom(Bitmap srcBitmap, int needHeight, boolean cycleSrc) {
 
         Log.d("danxx", "cropBitmapBottom before h : "+srcBitmap.getHeight());
 
@@ -32,8 +36,9 @@ public class CropUtil {
         Log.d("danxx", "cropBitmapBottom after h : "+cropBitmap.getHeight());
 
         /**回收之前的Bitmap*/
-        if (srcBitmap != null && !srcBitmap.equals(cropBitmap) && !srcBitmap.isRecycled()) {
-            srcBitmap.recycle();
+        if (cycleSrc && srcBitmap != null && !srcBitmap.equals(cropBitmap) && !srcBitmap.isRecycled()) {
+//            srcBitmap.recycle();
+            GlideBitmapPool.putBitmap(srcBitmap);
         }
 
         return cropBitmap;
