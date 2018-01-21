@@ -21,7 +21,7 @@ public class ScaleUtil {
      * @param newHeight
      * @return
      */
-    public static Bitmap scaleBitmap(Bitmap srcBitmap, int newWidth, int newHeight, boolean cycleSrc) {
+    public static Bitmap scaleBitmap(Bitmap srcBitmap, int newWidth, int newHeight, boolean recycleSrc) {
         if (srcBitmap == null) {
             return null;
         }
@@ -32,10 +32,33 @@ public class ScaleUtil {
         Matrix matrix = new Matrix();
         matrix.postScale(scaleWidth, scaleHeight);
         Bitmap newbm = Bitmap.createBitmap(srcBitmap, 0, 0, width, height, matrix,true);
-        if (cycleSrc && srcBitmap != null & !srcBitmap.isRecycled()) {
+        if (recycleSrc && srcBitmap != null & !srcBitmap.isRecycled()) {
             GlideBitmapPool.putBitmap(srcBitmap);
         }
         return newbm;
     }
-
+    /**
+     * 根据指定的宽度比例值和高度比例值进行缩放
+     * @param srcBitmap
+     * @param scaleWidth
+     * @param scaleHeight
+     * @param recycleSrc 是否回收Bitmap
+     * @return
+     */
+    public static Bitmap scaleBitmap(Bitmap srcBitmap, float scaleWidth, float scaleHeight, boolean recycleSrc) {
+        int width = srcBitmap.getWidth();
+        int height = srcBitmap.getHeight();
+        Matrix matrix = new Matrix();
+        matrix.postScale(scaleWidth, scaleHeight);
+        Bitmap bitmap = Bitmap.createBitmap(srcBitmap, 0, 0, width, height, matrix, true);
+        if (bitmap != null) {
+            /**回收*/
+            if (recycleSrc && srcBitmap != null && !srcBitmap.equals(bitmap) && !srcBitmap.isRecycled()) {
+                GlideBitmapPool.putBitmap(srcBitmap);
+            }
+            return bitmap;
+        } else {
+            return srcBitmap;
+        }
+    }
 }

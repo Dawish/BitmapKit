@@ -19,11 +19,11 @@ public class CropUtil {
      * 裁剪一定高度保留下面
      * @param srcBitmap
      * @param needHeight
-     * @param cycleSrc 是否回收原Bitmap
+     * @param recycleSrc 是否回收原Bitmap
      * @return
      */
     @DebugLog
-    private static Bitmap cropBitmapBottom(Bitmap srcBitmap, int needHeight, boolean cycleSrc) {
+    private static Bitmap cropBitmapBottom(Bitmap srcBitmap, int needHeight, boolean recycleSrc) {
 
         Log.d("danxx", "cropBitmapBottom before h : "+srcBitmap.getHeight());
 
@@ -36,7 +36,7 @@ public class CropUtil {
         Log.d("danxx", "cropBitmapBottom after h : "+cropBitmap.getHeight());
 
         /**回收之前的Bitmap*/
-        if (cycleSrc && srcBitmap != null && !srcBitmap.equals(cropBitmap) && !srcBitmap.isRecycled()) {
+        if (recycleSrc && srcBitmap != null && !srcBitmap.equals(cropBitmap) && !srcBitmap.isRecycled()) {
 //            srcBitmap.recycle();
             GlideBitmapPool.putBitmap(srcBitmap);
         }
@@ -63,6 +63,56 @@ public class CropUtil {
         Bitmap cropBitmap = Bitmap.createBitmap(srcBitmap,0,needY,srcBitmap.getWidth(),needHeight);
 
         Log.d("danxx", "cropBitmapBottom after h : "+cropBitmap.getHeight());
+
+        /**回收之前的Bitmap*/
+        if (srcBitmap != null && !srcBitmap.equals(cropBitmap) && !srcBitmap.isRecycled()) {
+            srcBitmap.recycle();
+        }
+
+        return cropBitmap;
+    }
+
+    /**
+     * 裁剪一定高度保留左边
+     * @param srcBitmap
+     * @param needWidth
+     * @return
+     */
+    @DebugLog
+    private static Bitmap cropBitmapLeft(Bitmap srcBitmap, int needWidth) {
+
+        Log.d("danxx", "cropBitmapLeft before w : "+srcBitmap.getWidth());
+
+        /**裁剪关键步骤*/
+        Bitmap cropBitmap = Bitmap.createBitmap(srcBitmap, 0, 0, needWidth, srcBitmap.getHeight());
+
+        Log.d("danxx", "cropBitmapLeft after w : "+cropBitmap.getWidth());
+
+        /**回收之前的Bitmap*/
+        if (srcBitmap != null && !srcBitmap.equals(cropBitmap) && !srcBitmap.isRecycled()) {
+            srcBitmap.recycle();
+        }
+
+        return cropBitmap;
+    }
+
+    /**
+     * 裁剪一定高度保留左边
+     * @param srcBitmap
+     * @param needWidth
+     * @return
+     */
+    @DebugLog
+    private static Bitmap cropBitmapRight(Bitmap srcBitmap, int needWidth) {
+
+        Log.d("danxx", "cropBitmapRight before w : "+srcBitmap.getWidth());
+
+        int needX = srcBitmap.getWidth() - needWidth;
+
+        /**裁剪关键步骤*/
+        Bitmap cropBitmap = Bitmap.createBitmap(srcBitmap, needX, 0, needWidth, srcBitmap.getHeight());
+
+        Log.d("danxx", "cropBitmapRight after w : "+cropBitmap.getWidth());
 
         /**回收之前的Bitmap*/
         if (srcBitmap != null && !srcBitmap.equals(cropBitmap) && !srcBitmap.isRecycled()) {
