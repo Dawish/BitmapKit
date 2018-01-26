@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="CropImageView">
+        <attr name="bitmapSrc" format="reference" />
+        <attr name="bitmapCropType" format="enum">
+            <enum name="left" value="1"></enum>
+            <enum name="top" value="2"></enum>
+            <enum name="bottom" value="3"></enum>
+            <enum name="right" value="4"></enum>
+            <enum name="random" value="5"></enum>
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="ShadeView">
+        <!--画边框否？-->
+        <attr name="draw_edge" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="RoundShadeLayout">
+
+        <!--<attr format="reference" name="shadowDrawableRes"/>-->
+        <attr format="reference" name="edgeDrawableRes"/>
+        <attr format="dimension" name="edgeValue"/>
+
+        <attr format="reference" name="focusShadowDrawableRes"/>
+        <attr format="reference" name="focusEdgeDrawableRes"/>
+        <attr format="dimension" name="focusEdgeValue"/>
+
+        <attr format="boolean" name="bringToFront"/>
+        <attr format="boolean" name="canZoom"/>
+        <attr format="float" name="zoomValue"/>
+        <attr format="boolean" name="drawEdge"/>
+
+        <attr format="boolean" name="asRoundCorner"/>
+        <attr format="integer" name="roundedCornerRadiusValue"/>
+
+    </declare-styleable>
+
+    <declare-styleable name="RoundedUI">
+        <attr name="halfRound" format="boolean" />
+        <attr name="adjustRoundSize" format="boolean" />
+        <attr name="roundWidth" format="dimension|fraction" />
+        <attr name="roundHeight" format="dimension|fraction" />
+        <attr name="borderWidth" format="dimension" />
+        <attr name="borderColor" format="color|integer|reference"/>
+    </declare-styleable>
+
+</resources>

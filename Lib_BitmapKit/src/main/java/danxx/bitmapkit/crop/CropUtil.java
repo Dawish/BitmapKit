@@ -23,7 +23,7 @@ public class CropUtil {
      * @return
      */
     @DebugLog
-    private static Bitmap cropBitmapBottom(Bitmap srcBitmap, int needHeight, boolean recycleSrc) {
+    public static Bitmap cropBitmapBottom(Bitmap srcBitmap, int needHeight) {
 
         Log.d("danxx", "cropBitmapBottom before h : "+srcBitmap.getHeight());
 
@@ -36,7 +36,7 @@ public class CropUtil {
         Log.d("danxx", "cropBitmapBottom after h : "+cropBitmap.getHeight());
 
         /**回收之前的Bitmap*/
-        if (recycleSrc && srcBitmap != null && !srcBitmap.equals(cropBitmap) && !srcBitmap.isRecycled()) {
+        if (srcBitmap != null && !srcBitmap.equals(cropBitmap) && !srcBitmap.isRecycled()) {
 //            srcBitmap.recycle();
             GlideBitmapPool.putBitmap(srcBitmap);
         }
@@ -52,7 +52,7 @@ public class CropUtil {
      * @return
      */
     @DebugLog
-    private static Bitmap cropBitmapTop(Bitmap srcBitmap, int needHeight) {
+    public static Bitmap cropBitmapTop(Bitmap srcBitmap, int needHeight) {
 
         Log.d("danxx", "cropBitmapBottom before h : "+srcBitmap.getHeight());
 
@@ -79,7 +79,7 @@ public class CropUtil {
      * @return
      */
     @DebugLog
-    private static Bitmap cropBitmapLeft(Bitmap srcBitmap, int needWidth) {
+    public static Bitmap cropBitmapLeft(Bitmap srcBitmap, int needWidth) {
 
         Log.d("danxx", "cropBitmapLeft before w : "+srcBitmap.getWidth());
 
@@ -103,7 +103,7 @@ public class CropUtil {
      * @return
      */
     @DebugLog
-    private static Bitmap cropBitmapRight(Bitmap srcBitmap, int needWidth) {
+    public static Bitmap cropBitmapRight(Bitmap srcBitmap, int needWidth) {
 
         Log.d("danxx", "cropBitmapRight before w : "+srcBitmap.getWidth());
 
