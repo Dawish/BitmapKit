@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BitmapOperations</string>
+    <string name="app_name">BitmapKit</string>
 
     <string name="tangwei01">https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1516032740812&amp;di=e0b5e8f3cf289852ad2db8a8a38a04f4&amp;imgtype=0&amp;src=http%3A%2F%2Fp3.gexing.com%2FG1%2FM00%2F08%2FA4%2FrBACFFPHogLQ1M1iAACazVdtfPU058.jpg</string>
     <string name="tangwei02">https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1516034230481&amp;di=5def17ff516806a3a586c79d818826a1&amp;imgtype=0&amp;src=http%3A%2F%2Fimg.hkwb.net%2Fatt%2Fsite2%2F20110217%2F210913a79ed0bcd56a07990b7f25bebe.jpg</string>
