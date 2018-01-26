@@ -8,15 +8,12 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.ImageView;
-
 import com.danxx.R;
-import com.danxx.utils.BitmapClipUtils;
-
 import danxx.bitmapkit.crop.CropUtil;
 
 /**
  * Created by danxx on 2018/1/26.
+ * Bitmap裁剪示例View
  */
 
 public class CropImageView extends View {
