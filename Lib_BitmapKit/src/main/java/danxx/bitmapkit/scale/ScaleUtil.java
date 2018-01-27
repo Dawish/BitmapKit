@@ -14,11 +14,22 @@ import com.glidebitmappool.internal.BitmapPool;
 public class ScaleUtil {
 
     /**
-     * 按新的宽高缩放图片
-     *
+     * 默认回收原图
      * @param srcBitmap
      * @param newWidth
      * @param newHeight
+     * @return
+     */
+    public static Bitmap scaleBitmap(Bitmap srcBitmap, int newWidth, int newHeight) {
+        return scaleBitmap(srcBitmap, newWidth, newHeight, true);
+    }
+    /**
+     * 按新的宽高缩放图片
+     *
+     * @param srcBitmap 原图
+     * @param newWidth  新的需要的宽度
+     * @param newHeight 新的需要的高度
+     * @param recycleSrc  是否回收原图
      * @return
      */
     public static Bitmap scaleBitmap(Bitmap srcBitmap, int newWidth, int newHeight, boolean recycleSrc) {
@@ -36,6 +47,17 @@ public class ScaleUtil {
             GlideBitmapPool.putBitmap(srcBitmap);
         }
         return newbm;
+    }
+
+    /**
+     * 默认回收原图
+     * @param srcBitmap
+     * @param scaleWidth
+     * @param scaleHeight
+     * @return
+     */
+    public static Bitmap scaleBitmap(Bitmap srcBitmap, float scaleWidth, float scaleHeight) {
+        return  scaleBitmap(srcBitmap, scaleWidth, scaleHeight, true);
     }
     /**
      * 根据指定的宽度比例值和高度比例值进行缩放
