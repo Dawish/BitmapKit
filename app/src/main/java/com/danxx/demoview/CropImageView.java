@@ -9,7 +9,7 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
 import com.danxx.R;
-import danxx.bitmapkit.crop.CropUtil;
+import danxx.bitmapkit.crop.BitmapCropUtil;
 
 /**
  * Created by danxx on 2018/1/26.
@@ -51,19 +51,19 @@ public class CropImageView extends View {
          switch (cropType){
              case 1:
                  needLength = bitmap.getWidth()/2;
-                 bitmap = CropUtil.cropBitmapLeft(bitmap,needLength);
+                 bitmap = BitmapCropUtil.cropBitmapLeft(bitmap,needLength);
                  break;
              case 2:
                  needLength = bitmap.getHeight()/2;
-                 bitmap = CropUtil.cropBitmapTop(bitmap,needLength);
+                 bitmap = BitmapCropUtil.cropBitmapTop(bitmap,needLength);
                  break;
              case 3:
                  needLength = bitmap.getHeight()/2;
-                 bitmap = CropUtil.cropBitmapBottom(bitmap,needLength);
+                 bitmap = BitmapCropUtil.cropBitmapBottom(bitmap,needLength);
                  break;
              case 4:
                  needLength = bitmap.getWidth()/2;
-                 bitmap = CropUtil.cropBitmapRight(bitmap,needLength);
+                 bitmap = BitmapCropUtil.cropBitmapRight(bitmap,needLength);
                  break;
              case 5:
                  break;

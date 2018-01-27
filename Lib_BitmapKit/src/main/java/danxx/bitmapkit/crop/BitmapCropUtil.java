@@ -13,17 +13,26 @@ import hugo.weaving.DebugLog;
  * Bitmap裁剪工具
  */
 
-public class CropUtil {
+public class BitmapCropUtil {
 
+    /**
+     * 默认回收原图的裁剪
+     * @param srcBitmap
+     * @param needHeight
+     * @return
+     */
+    public static Bitmap cropBitmapBottom(Bitmap srcBitmap, int needHeight){
+        return  cropBitmapBottom(srcBitmap,needHeight,true);
+    }
     /**
      * 裁剪一定高度保留下面
      * @param srcBitmap
      * @param needHeight
-     * @param recycleSrc 是否回收原Bitmap
+     * @param recycleSrc 是否回收原图
      * @return
      */
     @DebugLog
-    public static Bitmap cropBitmapBottom(Bitmap srcBitmap, int needHeight) {
+    public static Bitmap cropBitmapBottom(Bitmap srcBitmap, int needHeight, boolean recycleSrc) {
 
         Log.d("danxx", "cropBitmapBottom before h : "+srcBitmap.getHeight());
 
@@ -36,8 +45,7 @@ public class CropUtil {
         Log.d("danxx", "cropBitmapBottom after h : "+cropBitmap.getHeight());
 
         /**回收之前的Bitmap*/
-        if (srcBitmap != null && !srcBitmap.equals(cropBitmap) && !srcBitmap.isRecycled()) {
-//            srcBitmap.recycle();
+        if (recycleSrc && srcBitmap != null && !srcBitmap.equals(cropBitmap) && !srcBitmap.isRecycled()) {
             GlideBitmapPool.putBitmap(srcBitmap);
         }
 
@@ -46,13 +54,23 @@ public class CropUtil {
 
 
     /**
-     * 裁剪一定高度保留下面
+     * 默认回收原图的裁剪
      * @param srcBitmap
      * @param needHeight
      * @return
      */
-    @DebugLog
     public static Bitmap cropBitmapTop(Bitmap srcBitmap, int needHeight) {
+        return cropBitmapTop(srcBitmap, needHeight, true);
+    }
+    /**
+     * 裁剪一定高度保留下面
+     * @param srcBitmap
+     * @param needHeight
+     * @param recycleSrc 是否回收原图
+     * @return
+     */
+    @DebugLog
+    public static Bitmap cropBitmapTop(Bitmap srcBitmap, int needHeight, boolean recycleSrc) {
 
         Log.d("danxx", "cropBitmapBottom before h : "+srcBitmap.getHeight());
 
@@ -65,13 +83,17 @@ public class CropUtil {
         Log.d("danxx", "cropBitmapBottom after h : "+cropBitmap.getHeight());
 
         /**回收之前的Bitmap*/
-        if (srcBitmap != null && !srcBitmap.equals(cropBitmap) && !srcBitmap.isRecycled()) {
-            srcBitmap.recycle();
+        if (recycleSrc && srcBitmap != null && !srcBitmap.equals(cropBitmap) && !srcBitmap.isRecycled()) {
+            GlideBitmapPool.putBitmap(srcBitmap);
         }
 
         return cropBitmap;
     }
 
+
+    public static Bitmap cropBitmapLeft(Bitmap srcBitmap, int needWidth) {
+        return cropBitmapLeft(srcBitmap,needWidth,true);
+    }
     /**
      * 裁剪一定高度保留左边
      * @param srcBitmap
@@ -79,7 +101,7 @@ public class CropUtil {
      * @return
      */
     @DebugLog
-    public static Bitmap cropBitmapLeft(Bitmap srcBitmap, int needWidth) {
+    public static Bitmap cropBitmapLeft(Bitmap srcBitmap, int needWidth, boolean recycleSrc) {
 
         Log.d("danxx", "cropBitmapLeft before w : "+srcBitmap.getWidth());
 
@@ -89,13 +111,17 @@ public class CropUtil {
         Log.d("danxx", "cropBitmapLeft after w : "+cropBitmap.getWidth());
 
         /**回收之前的Bitmap*/
-        if (srcBitmap != null && !srcBitmap.equals(cropBitmap) && !srcBitmap.isRecycled()) {
-            srcBitmap.recycle();
+        if (recycleSrc && srcBitmap != null && !srcBitmap.equals(cropBitmap) && !srcBitmap.isRecycled()) {
+            GlideBitmapPool.putBitmap(srcBitmap);
         }
 
         return cropBitmap;
     }
 
+
+    public static Bitmap cropBitmapRight(Bitmap srcBitmap, int needWidth) {
+        return cropBitmapRight(srcBitmap, needWidth, true);
+    }
     /**
      * 裁剪一定高度保留左边
      * @param srcBitmap
@@ -103,7 +129,7 @@ public class CropUtil {
      * @return
      */
     @DebugLog
-    public static Bitmap cropBitmapRight(Bitmap srcBitmap, int needWidth) {
+    public static Bitmap cropBitmapRight(Bitmap srcBitmap, int needWidth, boolean recycleSrc) {
 
         Log.d("danxx", "cropBitmapRight before w : "+srcBitmap.getWidth());
 
@@ -115,8 +141,8 @@ public class CropUtil {
         Log.d("danxx", "cropBitmapRight after w : "+cropBitmap.getWidth());
 
         /**回收之前的Bitmap*/
-        if (srcBitmap != null && !srcBitmap.equals(cropBitmap) && !srcBitmap.isRecycled()) {
-            srcBitmap.recycle();
+        if (recycleSrc && srcBitmap != null && !srcBitmap.equals(cropBitmap) && !srcBitmap.isRecycled()) {
+            GlideBitmapPool.putBitmap(srcBitmap);
         }
 
         return cropBitmap;
