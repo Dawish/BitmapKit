@@ -13,6 +13,16 @@ import com.glidebitmappool.GlideBitmapPool;
 public class BitmapRotateUtil {
 
     /**
+     * 默认回收
+     * @param srcBitmap
+     * @param degrees
+     * @return
+     */
+    private Bitmap rotateBitmap(Bitmap srcBitmap, float degrees) {
+        return rotateBitmap(srcBitmap, degrees, true);
+    }
+
+    /**
      * 选择变换
      *
      * @param srcBitmap 原图
@@ -28,8 +38,8 @@ public class BitmapRotateUtil {
         Matrix matrix = new Matrix();
         matrix.setRotate(degrees);
         // 围绕原地进行旋转
-        Bitmap newBM = Bitmap.createBitmap(srcBitmap, 0, 0, width, height, matrix, false);
-        if (recycleSrc && srcBitmap != null & !srcBitmap.isRecycled()) {
+        Bitmap newBM = Bitmap.createBitmap(srcBitmap, 0, 0, width, height, matrix, true);
+        if (recycleSrc && srcBitmap != null & !srcBitmap.isRecycled() && !srcBitmap.equals(newBM)) {
             GlideBitmapPool.putBitmap(srcBitmap);
         }
         return newBM;
