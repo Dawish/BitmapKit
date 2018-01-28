@@ -43,7 +43,7 @@ public class BitmapScaleUtil {
         Matrix matrix = new Matrix();
         matrix.postScale(scaleWidth, scaleHeight);
         Bitmap newbm = Bitmap.createBitmap(srcBitmap, 0, 0, width, height, matrix,true);
-        if (recycleSrc && srcBitmap != null & !srcBitmap.isRecycled()) {
+        if (recycleSrc && srcBitmap != null & !srcBitmap.isRecycled() && !srcBitmap.equals(newbm)) {
             GlideBitmapPool.putBitmap(srcBitmap);
         }
         return newbm;
