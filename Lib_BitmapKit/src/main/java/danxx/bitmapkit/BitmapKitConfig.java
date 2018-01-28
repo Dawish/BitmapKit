@@ -1,6 +1,7 @@
 package danxx.bitmapkit;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 
 import com.glidebitmappool.GlideBitmapPool;
 
@@ -12,6 +13,14 @@ import danxx.bitmapkit.blur.BlurKit;
 
 public class BitmapKitConfig {
 
+    /**
+     * 默认的Bitmap存储格式
+     */
+    public static final Bitmap.Config DEFAULT_CONFIG = Bitmap.Config.ARGB_8888;
+
+    /**
+     * 默认的Bitmap对象缓存大小
+     */
     private static final int BITMAP_POOL_MAX_SIZE = 2 * 1024 * 1024;
 
     /**

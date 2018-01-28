@@ -11,7 +11,7 @@ import com.glidebitmappool.internal.BitmapPool;
  * Bitmap缩放工具
  */
 
-public class ScaleUtil {
+public class BitmapScaleUtil {
 
     /**
      * 默认回收原图
