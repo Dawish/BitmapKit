@@ -18,7 +18,7 @@ public class BitmapRotateUtil {
      * @param degrees
      * @return
      */
-    private Bitmap rotateBitmap(Bitmap srcBitmap, float degrees) {
+    public static Bitmap rotateBitmap(Bitmap srcBitmap, float degrees) {
         return rotateBitmap(srcBitmap, degrees, true);
     }
 
@@ -29,7 +29,7 @@ public class BitmapRotateUtil {
      * @param degrees  旋转角度，可正可负
      * @return 旋转后的图片
      */
-    private Bitmap rotateBitmap(Bitmap srcBitmap, float degrees, boolean recycleSrc) {
+    public static Bitmap rotateBitmap(Bitmap srcBitmap, float degrees, boolean recycleSrc) {
         if (srcBitmap == null) {
             return null;
         }
