@@ -78,6 +78,20 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="38pt"
             app:bitmapCropType="bottom" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20pt"
+            android:text="CustomBottom :"
+            android:textColor="@android:color/holo_red_light"
+            android:textSize="38pt" />
+        <com.danxx.demoview.CropImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="38pt"
+            app:bitmapCropType="custom" />
+
     </LinearLayout>
 
 </ScrollView>

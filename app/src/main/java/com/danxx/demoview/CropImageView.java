@@ -66,6 +66,9 @@ public class CropImageView extends View {
                  bitmap = BitmapCropUtil.cropBitmapRight(bitmap,needLength);
                  break;
              case 5:
+                 int needW = bitmap.getWidth()/2;
+                 int needH = bitmap.getHeight()/2;
+                 bitmap = BitmapCropUtil.cropBitmapCustom(bitmap,140, 80,needW, needH);
                  break;
          }
 

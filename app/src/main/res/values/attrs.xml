@@ -8,7 +8,7 @@
             <enum name="top" value="2"></enum>
             <enum name="bottom" value="3"></enum>
             <enum name="right" value="4"></enum>
-            <enum name="random" value="5"></enum>
+            <enum name="custom" value="5"></enum>
         </attr>
     </declare-styleable>
 
