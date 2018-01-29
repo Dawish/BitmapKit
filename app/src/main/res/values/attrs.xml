@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <declare-styleable name="CropImageView">
+    <declare-styleable name="DemoImageView">
         <attr name="bitmapSrc" format="reference" />
         <attr name="bitmapCropType" format="enum">
             <enum name="left" value="1"></enum>

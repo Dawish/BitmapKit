@@ -38,11 +38,11 @@ public class CropImageView extends View {
     private void init(Context context, AttributeSet attrs, int defStyleAttr){
 
         final TypedArray a =
-                context.obtainStyledAttributes(attrs, R.styleable.CropImageView, defStyleAttr, 0);
+                context.obtainStyledAttributes(attrs, R.styleable.DemoImageView, defStyleAttr, 0);
 
-         int bitmapId = a.getResourceId(R.styleable.CropImageView_bitmapSrc,R.drawable.gaoyuanyuan);
+         int bitmapId = a.getResourceId(R.styleable.DemoImageView_bitmapSrc,R.drawable.gaoyuanyuan);
 
-         int cropType = a.getInteger(R.styleable.CropImageView_bitmapCropType,1);
+         int cropType = a.getInteger(R.styleable.DemoImageView_bitmapCropType,1);
 
          bitmap = BitmapFactory.decodeResource(getResources(), bitmapId);
 
