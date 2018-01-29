@@ -148,4 +148,56 @@ public class BitmapCropUtil {
         return cropBitmap;
     }
 
+    /**
+     * 默认回收 随意裁剪
+     * @param srcBitmap
+     * @param firstPixelX
+     * @param firstPixelY
+     * @param needWidth
+     * @param needHeight
+     * @return
+     */
+    public static Bitmap cropBitmapCustom(Bitmap srcBitmap, int firstPixelX, int firstPixelY, int needWidth, int needHeight) {
+        return cropBitmapCustom(srcBitmap, firstPixelX, firstPixelY, needWidth, needHeight, true);
+    }
+
+    /**
+     * 自定义裁剪，根据第一个像素点(左上角)X和Y轴坐标和需要的宽高来裁剪
+     * @param srcBitmap
+     * @param firstPixelX
+     * @param firstPixelY
+     * @param needWidth
+     * @param needHeight
+     * @param recycleSrc
+     * @return
+     */
+    @DebugLog
+    public static Bitmap cropBitmapCustom(Bitmap srcBitmap, int firstPixelX, int firstPixelY, int needWidth, int needHeight, boolean recycleSrc) {
+
+        Log.d("danxx", "cropBitmapRight before w : "+srcBitmap.getWidth());
+        Log.d("danxx", "cropBitmapRight before h : "+srcBitmap.getHeight());
+
+        if(firstPixelX + needWidth > srcBitmap.getWidth()){
+            needWidth = srcBitmap.getWidth() - firstPixelX;
+        }
+
+        if(firstPixelY + needHeight > srcBitmap.getHeight()){
+            needHeight = srcBitmap.getHeight() - firstPixelY;
+        }
+
+        /**裁剪关键步骤*/
+        Bitmap cropBitmap = Bitmap.createBitmap(srcBitmap, firstPixelX, firstPixelY, needWidth, needHeight);
+
+        Log.d("danxx", "cropBitmapRight after w : "+cropBitmap.getWidth());
+        Log.d("danxx", "cropBitmapRight after h : "+cropBitmap.getHeight());
+
+
+        /**回收之前的Bitmap*/
+        if (recycleSrc && srcBitmap != null && !srcBitmap.equals(cropBitmap) && !srcBitmap.isRecycled()) {
+            GlideBitmapPool.putBitmap(srcBitmap);
+        }
+
+        return cropBitmap;
+    }
+
 }
