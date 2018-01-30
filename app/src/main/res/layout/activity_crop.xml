@@ -92,6 +92,12 @@
             android:layout_marginBottom="38pt"
             app:bitmapCropType="custom" />
 
+        <com.danxx.demoview.BlurImageView
+            android:layout_width="390pt"
+            android:layout_height="660pt"
+            android:layout_marginBottom="38pt"
+            app:bitmapCropType="custom" />
+
     </LinearLayout>
 
 </ScrollView>

@@ -70,9 +70,9 @@ public class ShadeUtil {
 
         if (blurBitmap != null) {
             //下移
-            currentRect.offset(0, currentRect.height() / 4);
-            //左右放大
-            currentRect.inset(-currentRect.height() / 5, 0);
+//            currentRect.offset(0, currentRect.height() / 4);
+//            //左右放大
+//            currentRect.inset(-currentRect.height() / 5, 0);
             canvas.drawBitmap(blurBitmap, null, currentRect, paint);
         }
 
