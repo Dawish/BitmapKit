@@ -5,6 +5,8 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.util.DisplayMetrics;
@@ -38,6 +40,9 @@ public class ShadeUtil {
     public static Bitmap createShadeBitmap(Canvas canvas, Bitmap srcBitmap, int shaderPadding, Drawable edgeSrcDrawable, Rect currentRect, boolean create) {
 
         Paint paint = new Paint();
+
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DARKEN));
+
         paint.setDither(true);
         Bitmap blurBitmap = null;
 
@@ -55,13 +60,13 @@ public class ShadeUtil {
             //画图片
             drawCanvas.drawBitmap(srcBitmap, null, rect, paint);
             //画阴影圈
-            drawDrawableAt(drawCanvas, rect, edgeSrcDrawable);
+//            drawDrawableAt(drawCanvas, rect, edgeSrcDrawable);
             //模糊前缩小
-            bitmap = BitmapScaleUtil.scaleBitmap(bitmap, 0.5f, 0.5f, true);
+            bitmap = BitmapScaleUtil.scaleBitmap(bitmap, 0.2f, 0.2f, true);
             //开始模糊
             blurBitmap = BlurKit.getInstance().blur(bitmap, 10);
             //模糊后放大
-            blurBitmap = BitmapScaleUtil.scaleBitmap(blurBitmap, 2.0f, 2.0f, true);
+            blurBitmap = BitmapScaleUtil.scaleBitmap(blurBitmap, 5.0f, 5.0f, true);
 
         } else {
             Log.d("danxxx", "create : " + create);
