@@ -56,7 +56,7 @@ public class ShadeUtil {
 
             Rect rect = new Rect(currentRect);
             //四周留出px画阴影
-            rect.inset(shaderPadding, shaderPadding);
+            rect.inset(currentRect.width()/6, currentRect.height()/6);
             //画图片
             drawCanvas.drawBitmap(srcBitmap, null, rect, paint);
             //画阴影圈
@@ -64,7 +64,7 @@ public class ShadeUtil {
             //模糊前缩小
             bitmap = BitmapScaleUtil.scaleBitmap(bitmap, 0.2f, 0.2f, true);
             //开始模糊
-            blurBitmap = BlurKit.getInstance().blur(bitmap, 10);
+            blurBitmap = BlurKit.getInstance().blur(bitmap, 16);
             //模糊后放大
             blurBitmap = BitmapScaleUtil.scaleBitmap(blurBitmap, 5.0f, 5.0f, true);
 
