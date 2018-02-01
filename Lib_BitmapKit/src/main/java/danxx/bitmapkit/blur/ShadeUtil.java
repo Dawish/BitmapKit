@@ -37,7 +37,7 @@ public class ShadeUtil {
      * @return
      */
     @DebugLog
-    public static Bitmap createShadeBitmap(Canvas canvas, Bitmap srcBitmap, int shaderPadding, Drawable edgeSrcDrawable, Rect currentRect, boolean create) {
+    public static Bitmap createShadeBitmap(Canvas canvas, Bitmap srcBitmap, int shaderPadding, Drawable edgeSrcDrawable, Rect currentRect, int blurRadius, boolean create) {
 
         Paint paint = new Paint();
 
@@ -64,7 +64,7 @@ public class ShadeUtil {
             //模糊前缩小
             bitmap = BitmapScaleUtil.scaleBitmap(bitmap, 0.2f, 0.2f, true);
             //开始模糊
-            blurBitmap = BlurKit.getInstance().blur(bitmap, 16);
+            blurBitmap = BlurKit.getInstance().blur(bitmap, blurRadius);
             //模糊后放大
             blurBitmap = BitmapScaleUtil.scaleBitmap(blurBitmap, 5.0f, 5.0f, true);
 

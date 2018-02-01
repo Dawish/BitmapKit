@@ -63,6 +63,6 @@ public class BlurImageView extends View {
         getDrawingRect(currentRect);
         super.onDraw(canvas);
 
-        bitmap = ShadeUtil.createShadeBitmap(canvas, bitmap, shaderPadding, shaderDrawable, currentRect, true);
+        bitmap = ShadeUtil.createShadeBitmap(canvas, bitmap, shaderPadding, shaderDrawable, currentRect, 16, true);
     }
 }
