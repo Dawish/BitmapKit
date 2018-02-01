@@ -24,7 +24,7 @@ import danxx.bitmapkit.blur.ShadeUtil;
 
 public class BlurImageView extends View {
 
-    Bitmap bitmap;
+    Bitmap bitmap,blurBitmap;
     Paint paint;
     private Drawable shaderDrawable;
     private Rect currentRect;
@@ -63,6 +63,10 @@ public class BlurImageView extends View {
         getDrawingRect(currentRect);
         super.onDraw(canvas);
 
-        bitmap = ShadeUtil.createShadeBitmap(canvas, bitmap, shaderPadding, shaderDrawable, currentRect, 16, true);
+        if(blurBitmap == null){
+            blurBitmap = ShadeUtil.createShadeBitmap(canvas, bitmap, shaderPadding, shaderDrawable, currentRect, 16, true);
+        }else {
+            blurBitmap = ShadeUtil.createShadeBitmap(canvas, bitmap, shaderPadding, shaderDrawable, currentRect, 16, false);
+        }
     }
 }
