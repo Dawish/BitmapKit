@@ -1,6 +1,7 @@
 package danxx.bitmapkit.scale;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 
 import com.glidebitmappool.GlideBitmapPool;
